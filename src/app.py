@@ -5,6 +5,7 @@ from views.mercancia import mercancia_bp
 from views.observacion import observacion_bp
 import webview
 from threading import Thread
+import os
 
 app = Flask(__name__)
 
@@ -25,8 +26,9 @@ def home():
             return render_template('index.html', usuario=usuario)  # Pasar el usuario a la plantilla
     return redirect(url_for('usuario.login'))  # Redirigir al login si no está autenticado
 def start_flask():
-    app.run(debug=True, use_reloader=False)  # Ejecutar Flask sin recargar automáticamente
-
+    port = int(os.environ.get("PORT", 5000))  # Usar el puerto especificado por Render o 5000 por defecto
+    app.run(host="0.0.0.0", port=port, debug=False)
+    
 if __name__ == '__main__':
     # Ejecutar Flask en un hilo separado
     flask_thread = Thread(target=start_flask)
