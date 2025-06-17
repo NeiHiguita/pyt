@@ -1,0 +1,36 @@
+{% extends "components/layout.html" %}
+
+{% block title %}Observaciones{% endblock %}
+
+{% block content %}
+    <h1>Listado de Observaciones</h1>
+    <style>
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto; /* Agrega un scrollbar vertical */
+            display: block; /* Hace que la tabla se comporte como un bloque para poder manejar el scrollbar */
+        }
+    </style>
+    
+    <div class="table-container">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Observacion</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for observacion in observacion %}
+                <tr>
+                    <td>{{ observacion.id }}</td>
+                    <td>{{ observacion.observaciont }}</td>
+                    <td>{{ observacion.fecha }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+{% endblock %}

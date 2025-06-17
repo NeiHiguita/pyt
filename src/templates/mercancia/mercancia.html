@@ -1,0 +1,44 @@
+{% extends "components/layout.html" %}
+
+{% block title %}Mercancias{% endblock %}
+
+{% block content %}
+    <h1>Listado de Mercancia</h1>
+    <style>
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto; /* Agrega un scrollbar vertical */
+            display: block; /* Hace que la tabla se comporte como un bloque para poder manejar el scrollbar */
+        }
+    </style>
+    
+    <div class="table-container">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Proveedor</th>
+                    <th>Producto</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mercancia in mercancia %}
+                <tr>
+                    <td>{{ mercancia.id }}</td>
+                    <td>{{ mercancia.proveedor }}</td>
+                    <td>{{ mercancia.producto }}</td>
+                    <td>{{ mercancia.descripcion }}</td>
+                    <td>{{ mercancia.precio }}</td>
+                    <td>{{ mercancia.fecha }}</td>
+                    <td>{{ mercancia.estado }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+{% endblock %}

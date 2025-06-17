@@ -1,0 +1,130 @@
+{% extends "components/layout.html" %}
+
+{% block title %}Crear Factura{% endblock %}
+
+{% block content %}
+
+<style>
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.form-container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 700px;
+}
+
+.form-container h1 {
+    color: #1D3A6C;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-columns {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex: 1;
+    min-width: 250px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1D3A6C;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #16325c;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 140px;
+    margin-bottom: 20px;
+}
+
+.text-sucess {
+    color: green;
+}
+.text-danger {
+    color: red;
+}
+</style>
+
+<div class="form-wrapper">
+    <div class="form-container">
+        <div class="title">
+            <a style="margin-top: -30px;" href="html"><i class="bi bi-arrow-left"></i></a>
+            <h1>Registrar Factura</h1>
+        </div>
+        <form method="POST" action="/api/facturas/nueva">
+            <div class="form-columns">
+                <div class="column">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" name="fecha" required>
+
+                    <label for="tipo_proceso">Tipo de Proceso:</label>
+                    <select id="tipo_proceso" name="tipo_proceso" required>
+                        <option value="">Seleccione un Proceso</option>
+                        <option value="Venta" class="text-sucess">Venta</option>
+                        <option value="Domicilio" class="text-sucess">Domicilio</option>
+                        <option value="Transferencia" class="text-sucess">Transferencia</option>
+                        <option value="Inversion" class="text-danger">Inversión</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="column">
+                    <label for="subtotal">Subtotal:</label>
+                    <input type="number" step="1" id="subtotal" name="subtotal" required>
+
+                    <label for="descripcion">Descripción:</label>
+                    <input type="text" id="descripcion" name="descripcion"></input>
+                </div>
+            </div>
+
+            <button type="submit">Crear</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
